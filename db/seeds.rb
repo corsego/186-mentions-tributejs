@@ -7,3 +7,7 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+usernames = %w[yshmarov marcoroth adrianthedev lucianghinda robzolkos dhh matz]
+usernames.each do |username|
+  User.create username: username
+end
