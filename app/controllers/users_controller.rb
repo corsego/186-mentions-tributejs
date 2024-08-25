@@ -3,7 +3,20 @@ class UsersController < ApplicationController
 
   # GET /users or /users.json
   def index
-    @users = User.all
+    # binding.b
+    respond_to do |format|
+      format.html do 
+        @users = User.all
+      end
+      format.json do 
+        @users = if params[:query].present?
+          User.where('username ILIKE ?', "%#{params[:query]}%")
+        else
+          User.none
+        end
+        render json: @users
+      end
+    end
   end
 
   # GET /users/1 or /users/1.json
